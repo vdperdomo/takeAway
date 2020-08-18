@@ -1,8 +1,9 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
-import RestoItem from '../components/resto-item.component';
+import Restaurant from '../components/restaurant/restaurant.component';
+import styled from 'styled-components/native';
 
-export default function restaurantsScreen(props) {
+const RestaurantListScreen = (props) => {
 
     const restosData = [
         {
@@ -33,13 +34,20 @@ export default function restaurantsScreen(props) {
 
 
     const restos = restosData.map(resto => {
-        return <RestoItem key={resto.id} resto={resto} {...props}></RestoItem>
+        return <Restaurant key={ resto.id } resto={ resto } { ...props }></Restaurant>
     })
 
     return (
-        <ScrollView>
-            {restos}
-        </ScrollView>
+        <Container>
+            <ScrollView>
+                { restos }
+            </ScrollView>
+        </Container>
     )
 }
 
+export default RestaurantListScreen;
+
+
+const Container = styled.View`
+`;

@@ -1,29 +1,33 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import restaurantsScreen from './src/screens/restaurants.screen';
-import menuScreen from './src/screens/menu.screen';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import RestaurantListScreen from './src/screens/restaurant-list.screen';
+import RestaurantStoreScreen from './src/screens/restaurant-store.screen';
 
 
 const Stack = createStackNavigator();
 
+const MyTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: 'rgb(0, 45, 85)',
+  },
+};
+
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Restaurants" component={restaurantsScreen} />
-        <Stack.Screen name="Menu" component={menuScreen} />
+    <NavigationContainer theme={ MyTheme } style={ { backgroundColor: MyTheme.primary } }>
+      <Stack.Navigator initialRouteName="Menu" screenOptions={ { backgroundColor: MyTheme.primary } }>
+        <Stack.Screen
+          name="Restaurants"
+          component={ RestaurantListScreen }
+          options={ {
+            headerStyle: { backgroundColor: 'white' }
+          } } />
+        <Stack.Screen name="Menu" component={ RestaurantStoreScreen } />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

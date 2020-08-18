@@ -2,11 +2,10 @@ import React from 'react';
 import { ImageBackground, StyleSheet, Text, View } from 'react-native';
 import styled from 'styled-components/native';
 
-const RestoItem = (props) => {
+const Restaurant = (props) => {
     const resto = props.resto;
 
     const goToMenu = () => {
-        console.log(props)
         props.navigation.navigate('Menu')
     }
     return (
@@ -32,11 +31,12 @@ const RestoItem = (props) => {
     )
 }
 
-export default RestoItem;
+export default Restaurant;
 
 const Container = styled.TouchableHighlight`
     margin: 10px;
     flex:1;
+    min-height: 180px;
 `;
 
 const RestoContainer = styled.View`   
